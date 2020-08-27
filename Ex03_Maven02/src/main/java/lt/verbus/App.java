@@ -8,18 +8,28 @@ import com.github.javafaker.Faker;
  */
 public class App 
 {
+
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
         Faker faker = new Faker();
 
-        String name = faker.name().fullName(); // Miss Samanta Schmidt
-        String firstName = faker.name().firstName(); // Emory
-        String lastName = faker.name().lastName(); // Barton
+        for (int i = 1; i <= 100; i++) {
+            if (i%10 != 0) {
+                System.out.printf("%-22s",  faker.address().streetName());
+            } else System.out.println();
+        }
 
-        String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
+        for (int i = 1; i <= 100; i++) {
+            if (i%10 != 0) {
+                System.out.printf("%22s",  faker.weather().temperatureCelsius());
+            } else System.out.println();
+        }
 
-        System.out.println(name + "\n" + firstName + "\n" + lastName + "\n" + streetAddress);
+        for (int i = 1; i <= 100; i++) {
+            if (i%10 != 0) {
+                System.out.printf("%-22s",  faker.gameOfThrones().character());
+            } else System.out.println();
+        }
 
     }
 }
