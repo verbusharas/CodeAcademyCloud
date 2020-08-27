@@ -1,10 +1,10 @@
 package lt.verbus;
 
 public class Payment {
-    private int id;
-    private double amount;
-    private int sender;
-    private int receiver;
+    private final int id;
+    private final double amount;
+    private final int sender;
+    private final int receiver;
 
     public Payment (int id, double amount, int sender, int receiver) {
         this.id = id;
