@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ImportService {
+
     public Map<Integer, Person> importPeople(String pathToFile) {
         Map<Integer, Person> people = new HashMap<>();
         try (BufferedReader peopleReader = Files.newBufferedReader(Paths.get(pathToFile))) {
@@ -15,12 +16,12 @@ public class ImportService {
             peopleReader.readLine(); //prašokama pirma eilutė su stulpelių pavadinimais
             while ((line = peopleReader.readLine()) != null) {
                 String[] argumentsInLine = line.split(", ");
-                people.put(Integer.valueOf(argumentsInLine[0]), new Person(Integer.valueOf(argumentsInLine[0]), argumentsInLine[1], argumentsInLine[2]));
+                people.put(Integer.valueOf(argumentsInLine[0]), createPerson(argumentsInLine));
             }
+            System.out.println("List of registered people imported successfully. No of entries: " + people.size());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("List of registered people imported successfully. No of entries: " + people.size());
         return people;
     }
 
@@ -31,13 +32,30 @@ public class ImportService {
             paymentReader.readLine(); //prašokama pirma eilutė su stulpelių pavadinimais
             while ((line = paymentReader.readLine()) != null) {
                 String[] argumentsInLine = line.split(", ");
-                transactions.put(Integer.valueOf(argumentsInLine[0]),
-                        new Payment(Integer.valueOf(argumentsInLine[0]), Double.valueOf(argumentsInLine[1]), Integer.valueOf(argumentsInLine[2]), Integer.valueOf(argumentsInLine[3].trim())));
+                transactions.put(Integer.valueOf(argumentsInLine[0]), createPayment(argumentsInLine));
             }
+            System.out.println("List of completed transactions imported successfully. No of entries: " + transactions.size());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("List of completed transactions imported successfully. No of entries: " + transactions.size());
         return transactions;
+    }
+
+
+    private Person createPerson(String[] argumentsInLine) {
+        return new Person(
+                Integer.parseInt(argumentsInLine[0]),
+                argumentsInLine[1],
+                argumentsInLine[2]
+        );
+    }
+
+    private Payment createPayment(String[] argumentsInLine) {
+        return new Payment(
+                Integer.parseInt(argumentsInLine[0]),
+                Double.parseDouble(argumentsInLine[1]),
+                Integer.parseInt(argumentsInLine[2]),
+                Integer.parseInt(argumentsInLine[3].trim())
+        );
     }
 }
