@@ -1,9 +1,9 @@
 package lt.verbus;
 
 public class Person {
-    private int id;
-    private String name;
-    private String surname;
+    private final int id;
+    private final String name;
+    private final String surname;
     private double receivedMoney;
     private double sentMoney;
 
@@ -15,11 +15,11 @@ public class Person {
         this.sentMoney = 0;
     }
 
-    public void transactionIn(double amount) {
+    public void setTransactionIn(double amount) {
         this.receivedMoney = receivedMoney + amount;
     }
 
-    public void transactionOut(double amount) {
+    public void setTransactionOut(double amount) {
         this.sentMoney = sentMoney + amount;
     }
 
@@ -29,6 +29,10 @@ public class Person {
 
     public double getSentMoney() {
         return sentMoney;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
