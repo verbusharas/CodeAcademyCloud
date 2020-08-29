@@ -6,7 +6,7 @@ import com.github.javafaker.Faker;
  * Hello world!
  *
  */
-public class AppMaven04Parent
+public class AppMaven04Child
 {
     public static void main( String[] args )
     {
@@ -14,8 +14,6 @@ public class AppMaven04Parent
         Faker faker = new Faker();
         System.out.println(faker.ancient().god());
 
-
-        // Su dependencyManagement neveikia nei PARENT NEI CHILD
 
     }
 }
