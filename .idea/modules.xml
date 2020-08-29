@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CodeAcademyCloud.iml" filepath="$PROJECT_DIR$/CodeAcademyCloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex04_Maven02/Ex04_Maven02.iml" filepath="$PROJECT_DIR$/Ex04_Maven02/Ex04_Maven02.iml" />
+    </modules>
+  </component>
+</project>
