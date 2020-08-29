@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CodeAcademyCloud.iml" filepath="$PROJECT_DIR$/CodeAcademyCloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/Ex04_Maven02/Ex04_Maven02.iml" filepath="$PROJECT_DIR$/Ex04_Maven02/Ex04_Maven02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex_Maven05_TwilioSMS/Ex_Maven05_TwilioSMS.iml" filepath="$PROJECT_DIR$/Ex_Maven05_TwilioSMS/Ex_Maven05_TwilioSMS.iml" />
     </modules>
   </component>
 </project>
