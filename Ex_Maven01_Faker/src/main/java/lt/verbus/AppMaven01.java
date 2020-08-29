@@ -6,7 +6,7 @@ import com.github.javafaker.Faker;
  * Hello world!
  *
  */
-public class App 
+public class AppMaven01
 {
 
     public static void main( String[] args )
