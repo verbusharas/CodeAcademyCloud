@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CodeAcademyCloud.iml" filepath="$PROJECT_DIR$/CodeAcademyCloud.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Ex04_Maven02/Ex04_Maven02.iml" filepath="$PROJECT_DIR$/Ex04_Maven02/Ex04_Maven02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/CodeAcademyCloud.iml" filepath="$PROJECT_DIR$/.idea/CodeAcademyCloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex_Maven04_Parent/Ex_Maven04_Child/Ex_Maven04_Child.iml" filepath="$PROJECT_DIR$/Ex_Maven04_Parent/Ex_Maven04_Child/Ex_Maven04_Child.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex_Maven04_Parent/Ex_Maven04_Parent.iml" filepath="$PROJECT_DIR$/Ex_Maven04_Parent/Ex_Maven04_Parent.iml" />
     </modules>
   </component>
 </project>
