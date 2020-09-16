@@ -12,14 +12,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Ex03_Maven02" target="1.7" />
       <module name="Ex04_Maven02" target="1.7" />
-      <module name="Ex04_Maven02_Lingua" target="1.7" />
       <module name="Ex_JDBC01" target="1.7" />
-      <module name="Ex_Maven01_Faker" target="1.7" />
-      <module name="Ex_Maven02_Lingua" target="1.7" />
       <module name="Ex_Multithreading02" target="8" />
-      <module name="TestHome" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

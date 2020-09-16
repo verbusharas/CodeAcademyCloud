@@ -9,17 +9,21 @@ import java.util.List;
 
 public class Database {
 
-    private static final String SQL_URL = "jdbc:mysql://localhost:3306/paskaitos2";
-    private static final String SQL_USERNAME = "root";
-    private static final String SQL_PASSWORD = "08princeAli";
+    private static Database database;
 
-    private Connection connection = DriverManager.getConnection(SQL_URL, SQL_USERNAME, SQL_PASSWORD);;
-    private Statement statement = connection.createStatement();;
+    private final String SQL_URL = "jdbc:mysql://localhost:3306/paskaitos2";
+    private final String SQL_USERNAME = "root";
+    private final String SQL_PASSWORD = "08princeAli";
 
-    public Database() throws SQLException {
+    private static Connection connection = null;
+    private static Statement statement = null;
+
+    private Database() throws SQLException {
+        connection = DriverManager.getConnection(SQL_URL, SQL_USERNAME, SQL_PASSWORD);
+        statement = connection.createStatement();;
     }
 
-    public static List<Project> getAllProjects() throws SQLException {
+    public List<Project> getAllProjects() throws SQLException {
 
         List<Project> projects = new ArrayList<>();
         ResultSet table = null;
@@ -40,13 +44,13 @@ public class Database {
         return projects;
     }
 
-    public static void addNewPerson(Person person) throws SQLException {
+    public void addNewPerson(Person person) throws SQLException {
        PreparedStatement preparedStatement = connection.prepareStatement(Queries.ADD_PERSON);
        preparedStatement.setString(1, person.getSurname());
        preparedStatement.executeUpdate();
     }
 
-    public static int getPersonIdBySurname(String surname) throws SQLException {
+    public int getPersonIdBySurname(String surname) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(Queries.GET_PERSON_ID_BY_SURNAME);
         preparedStatement.setString(1, surname);
         ResultSet result = preparedStatement.executeQuery();
@@ -54,17 +58,22 @@ public class Database {
         return result.getInt("Nr");
     }
 
-    public static void appointPersonToProject(int personId, int projectID, String status, int hours) throws SQLException {
+    public void appointPersonToProject(Person person, int projectID, String status, int hours) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(Queries.APPOINT_PERSON_TO_PROJECT);
         preparedStatement.setInt(1, projectID);
-        preparedStatement.setInt(2, personId);
+        preparedStatement.setInt(2, getPersonIdBySurname(person.getSurname()));
         preparedStatement.setString(3, status);
         preparedStatement.setInt(4, hours);
         preparedStatement.executeUpdate();
     }
 
+    public static Database getInstance() throws SQLException {
+        if (database == null)
+            database = new Database();
+        return database;
+    }
 
-    public static void closeConnections() {
+    public void closeConnections() {
         try {
             statement.close();
             connection.close();
