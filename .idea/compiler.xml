@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Ex04_Maven02" />
         <module name="Ex_JDBC01" />
-        <module name="Ex_Multithreading02" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
