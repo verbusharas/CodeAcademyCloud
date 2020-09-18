@@ -3,40 +3,43 @@ package lt.verbus.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Project {
+public class Project implements Convertable{
 
-    private final int id;
-    private final String name;
-    private List<Person> executorList;
+    private final Integer id;
+    private final String title;
+    private List<Executor> executorList;
 
-    public Project(int id, String name) {
+    public Project(Integer id, String title) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.executorList = new ArrayList<>();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
+    @Override
     public String getName() {
-        return name;
+        return title;
     }
 
-    public List<Person> getExecutorList() {
+    public List<Executor> getExecutorList() {
         return executorList;
     }
 
-    public void addExecutor(Person person) {
-        executorList.add(person);
+    public void addExecutor(Executor executor) {
+        executorList.add(executor);
     }
 
     @Override
     public String toString() {
-        String projectInfo = "\n = " + name + " = \n";
+        String projectInfo = "\n = " + title + " = \n";
         for (int i = 0; i<executorList.size(); i++) {
             projectInfo += i+1 + ". " + executorList.get(i) + "\n";
         }
         return projectInfo;
     }
+
+
 }
