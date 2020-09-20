@@ -1,45 +1,66 @@
 package lt.verbus.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
-public class Project implements Convertable{
+public class Project extends BaseEntity{
 
-    private final Integer id;
-    private final String title;
-    private List<Executor> executorList;
+    private String title;
+    private Importance importance;
+    private LocalDate startedAt;
+    private Integer duration;
+    private Map<Integer, Executor> executors = new HashMap<>();
 
-    public Project(Integer id, String title) {
-        this.id = id;
-        this.title = title;
-        this.executorList = new ArrayList<>();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public String getName() {
+    public String getTitle() {
         return title;
     }
 
-    public List<Executor> getExecutorList() {
-        return executorList;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void addExecutor(Executor executor) {
-        executorList.add(executor);
+    public Importance getImportance() {
+        return importance;
+    }
+
+    public void setImportance(Importance importance) {
+        this.importance = importance;
+    }
+
+    public LocalDate getStartedAt() {
+        return startedAt;
+    }
+
+    public void setStartedAt(LocalDate startedAt) {
+        this.startedAt = startedAt;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public Map<Integer, Executor> getExecutors() {
+        return executors;
+    }
+
+    public void setExecutors(Map<Integer, Executor> executors) {
+        this.executors = executors;
     }
 
     @Override
     public String toString() {
-        String projectInfo = "\n = " + title + " = \n";
-        for (int i = 0; i<executorList.size(); i++) {
-            projectInfo += i+1 + ". " + executorList.get(i) + "\n";
+        String formattedString = "\n== " + title + "==";
+        for (Executor executor : executors.values()) {
+            formattedString += "\n" + executor.getFullName();
         }
-        return projectInfo;
+        formattedString += "\n\n";
+        return formattedString;
     }
-
-
 }

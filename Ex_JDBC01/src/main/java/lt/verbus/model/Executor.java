@@ -1,27 +1,38 @@
 package lt.verbus.model;
 
-public class Executor implements Convertable{
+public class Executor extends BaseEntity{
 
-    private final Integer id;
-    private final String fullName;
+    private String fullName;
+    private String qualification;
+    private String education;
 
-    public Executor(Integer id, String fullName) {
-        this.id = id;
-        this.fullName = fullName;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public String getName() {
+    public String getFullName() {
         return fullName;
     }
 
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
 
     @Override
     public String toString() {
         return fullName;
     }
+
 }
