@@ -4,6 +4,7 @@ import lt.verbus.config.QueriesMySql;
 import lt.verbus.model.Executor;
 import lt.verbus.model.Project;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class ExecutorRepository implements CrudRepository<Integer, Executor> {
     private final Statement statement;
     private PreparedStatement preparedStatement;
 
-    public ExecutorRepository(Connection connection) throws SQLException {
+    public ExecutorRepository(Connection connection) throws SQLException, IOException {
         this.connection = ConnectionPool.getMySqlConnection();
         this.statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_UPDATABLE);

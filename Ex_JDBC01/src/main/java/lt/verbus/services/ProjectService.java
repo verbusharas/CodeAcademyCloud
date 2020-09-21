@@ -4,6 +4,7 @@ import lt.verbus.model.Executor;
 import lt.verbus.model.Project;
 import lt.verbus.repository.ProjectRepository;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
-    public Map<Integer, Project> findAll() throws SQLException {
+    public Map<Integer, Project> findAll() throws SQLException, IOException {
         return projectRepository.findAll();
     }
 

@@ -5,6 +5,7 @@ import lt.verbus.model.Executor;
 import lt.verbus.model.Importance;
 import lt.verbus.model.Project;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,14 +17,14 @@ public class ProjectRepository implements CrudRepository<Integer, Project> {
     private PreparedStatement preparedStatement;
     private final ExecutorRepository executorRepository;
 
-    public ProjectRepository(Connection connection) throws SQLException {
+    public ProjectRepository(Connection connection) throws SQLException, IOException {
         this.connection = ConnectionPool.getMySqlConnection();
         this.statement = connection.createStatement();
         this.executorRepository = new ExecutorRepository(connection);
     }
 
     @Override
-    public Map<Integer, Project> findAll() throws SQLException {
+    public Map<Integer, Project> findAll() throws SQLException, IOException {
         ResultSet table = statement.executeQuery(QueriesMySql.ALL_PROJECTS_AND_EXECUTORS);
         Map<Integer, Project> projects = new HashMap<>();
         ExecutorRepository executorRepository = new ExecutorRepository(connection);
@@ -67,20 +68,22 @@ public class ProjectRepository implements CrudRepository<Integer, Project> {
         Map<Integer, Executor> projectExecutors = project.getExecutors();
         Map<Integer, Executor> projectExecutorsInRepo = executorRepository.findAllByProject(project);
 
-        for (Executor executor : projectExecutors.values()) {
-            if (projectExecutorsInRepo.get(executor.getId()) == null) {
-                appointExecutorToProject(executor, project);
-            }
-        }
+        projectExecutors.values().stream()
+                .filter(executor -> projectExecutorsInRepo.get(executor.getId()) == null)
+                .forEach(executor -> appointExecutorToProject(executor, project));
+
     }
 
-    public void appointExecutorToProject(Executor executor, Project project) throws SQLException {
-        preparedStatement = connection.prepareStatement(QueriesMySql.APPOINT_EXECUTOR_TO_PROJECT);
-        preparedStatement.setInt(1, project.getId());
-        System.out.println(project.getId());
-        preparedStatement.setInt(2, executor.getId());
-        System.out.println(executor.getId());
-        preparedStatement.executeUpdate();
+    public void appointExecutorToProject(Executor executor, Project project) {
+        try {
+            preparedStatement = connection.prepareStatement(QueriesMySql.APPOINT_EXECUTOR_TO_PROJECT);
+            preparedStatement.setInt(1, project.getId());
+            preparedStatement.setInt(2, executor.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
     @Override

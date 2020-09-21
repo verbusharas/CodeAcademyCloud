@@ -8,12 +8,13 @@ import lt.verbus.repository.ProjectRepository;
 import lt.verbus.services.ExecutorService;
 import lt.verbus.services.ProjectService;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 
 public class AppJDBC01
 {
-    public static void main( String[] args ) throws SQLException {
+    public static void main( String[] args ) throws SQLException, IOException {
 
         ExecutorRepository executorRepository = new ExecutorRepository(ConnectionPool.getMySqlConnection());
         ProjectRepository projectRepository = new ProjectRepository(ConnectionPool.getMySqlConnection());
@@ -44,6 +45,8 @@ public class AppJDBC01
 
         // destroy
         ConnectionPool.closeConnections();
+
+
 
     }
 }
