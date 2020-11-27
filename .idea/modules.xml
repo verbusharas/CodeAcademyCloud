@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/CodeAcademyCloud.iml" filepath="$PROJECT_DIR$/.idea/CodeAcademyCloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex_MongoDb01/Ex_MongoDb01.iml" filepath="$PROJECT_DIR$/Ex_MongoDb01/Ex_MongoDb01.iml" />
+    </modules>
+  </component>
+</project>
